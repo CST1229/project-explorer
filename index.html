@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<link href="css/general.css" rel="stylesheet">
+		<link href="css/seeinside.css" rel="stylesheet">
+	</head>
+	<body class="see-inside">
+		<div id="app">
+			<navbar></navbar>
+			<div id="content">
+				<div id="project" v-if="projectReady">
+					<div class="project-grid">
+						<div id="tabs-area" v-if="selectedSprite >= 0">
+							<sprite-tab
+								v-bind:name='"General"'
+								v-bind:id="0"
+							></sprite-tab>
+							<sprite-tab
+								v-bind:name='"Code"'
+								v-bind:id="1"
+							></sprite-tab>	
+							<sprite-tab
+								v-bind:name='"Costumes"'
+								v-bind:id="2"
+							></sprite-tab>	
+							<sprite-tab
+								v-bind:name='"Sound"'
+								v-bind:id="3"
+							></sprite-tab>
+						</div>
+					</div>
+					<div class="project-grid" id="general-area">
+						<sprite-list
+							v-bind:sprite="{id: -1, name: 'General'}"
+							class="sprite-general"
+						></sprite-list>
+					</div>
+					<div class="project-grid" id="info-area">
+						<div v-if="selectedSprite>=0">
+							<div id="general-tab" v-if="selectedTab===0">
+								<sprite-info
+									v-bind:sprite="project.sprites[selectedSprite]"
+								></sprite-info>	
+							</div>
+							<div id="code-tab" v-if="selectedTab===1" v-bind:sprite="project.sprites[selectedSprite]">
+								<code-info
+									v-bind:sprite="project.sprites[selectedSprite]"
+								></code-info>	
+							</div>
+							<div id="costumes-tab" v-if="selectedTab===2">
+								<ol><asset-info
+									v-for="asset in project.sprites[selectedSprite].costumes"
+									v-bind:key="asset.id"
+									v-bind:asset="asset"
+								></asset-info></ol>
+							</div>
+							<div id="sound-tab" v-if="selectedTab===3">
+								<ol><asset-info
+									v-for="asset in project.sprites[selectedSprite].sounds"
+									v-bind:key="asset.id"
+									v-bind:asset="asset"
+								></asset-info></ol>
+							</div>
+						</div>
+						<div v-else>
+							<b>Total blocks: </b> {{project.blockCount}}<br>
+							<b>Total comments: </b> {{project.commentCount}}<br>
+							<b>Scratch version: </b> {{project.meta.scratchVer}}<br>
+							<b>Scratch VM version: </b> {{project.meta.vmVer}}<br>
+							<b>Browser / operating system: </b> {{project.meta.browserOS}}<br>
+						</div>
+					</div>
+					<div class="project-grid" id="sprites-area">
+						<sprite-list
+							v-for="sprite in project.sprites"
+							v-bind:key="sprite.id"
+							v-bind:sprite="sprite"
+						></sprite-list>
+					</div>
+				</div>
+				<div id="projectmessage" v-if="projectReady == 0">
+					{{projectMessage}}
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/methods.js"></script>
+		<script src="js/components.js"></script>
+		<script src="js/general.js"></script>
+		<script>
+		//Load a project
+		(function(){
+			v.promptForProject();
+		})();
+		/*
+			Test projects:
+				10128407: Paper Minecraft
+				500000000: 500000000th Project of Scratch !
+				293945436: WBP WORKSPACE - DO NOT READ (High asset stress test)
+				534013689: Just Mineral Fish & Their Soundtracks
+				1: Project 1
+		*/
+		</script>
+	</body>
+</html>

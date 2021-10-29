@@ -1,0 +1,68 @@
+body.see-inside {
+	overflow: hidden;
+}
+#project {
+	display: grid;
+	grid: 3em auto / auto 12em;
+	margin: -0.75em;
+	gap: 4px;
+	padding: 4px;
+	padding-bottom: -1px;
+	background-color: var(--dark-gray);
+	height: calc(100vh - 4rem - 5px);
+}
+/* Grid */
+.project-grid {
+	background-color: var(--white);
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+/* Areas */
+/* Tabs area */
+#tabs-area {
+	display: flex;
+	height: 100%;
+}
+/* Info area */
+#info-area {
+	padding: 1em;
+}
+/* Sprites area */
+.sprites-li {
+	height: 2em;
+	
+	text-align: center;
+	
+	border-bottom: solid 2px var(--light-gray);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	cursor: pointer;
+}
+.sprites-li span {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.sprites-highlighted {
+	color: var(--main);
+	font-weight: bold;
+}
+.sprites-li.sprite-general {
+	height: 100%;
+	border-bottom: none;
+}
+.sprite-tab {
+	width: 8em;
+	height: 100%;
+	
+	border-right: solid 2px var(--light-gray);
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	cursor: pointer;
+}

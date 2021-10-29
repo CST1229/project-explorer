@@ -1,0 +1,36 @@
+/* Boring stuff */
+hr {
+	background-color: var(--dark-gray);
+	border: none;
+	height: 4px;
+	margin: 4px 0;
+}
+h1, h2, h3, h4 {
+	margin: 0.75em 0 0.1em 0;
+}
+a {
+	color: var(--main);
+	text-decoration: none;
+	font-weight: bold;
+}
+a:visited {
+	color: var(--dark-main);
+}
+a:active {
+	text-decoration: underline;
+}
+input {
+	border: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type=number] {
+	-moz-appearance: textfield;
+}
+ol, ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}

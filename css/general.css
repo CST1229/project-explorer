@@ -1,0 +1,34 @@
+@import "basicelements.css";
+@import "header.css";
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"); 
+
+/* General variables */
+:root {
+	--black: black;
+	--text: #050933;
+	--dark-gray: #b8b8b8;
+	--light-gray: #ddd;
+	--white: white;
+	
+	--main: #873cff;
+	--lighter-main: #af7cff;
+	--light-main: #9d5fff;
+	--dark-main: #6d2bd6;
+	
+	--text-size: 14pt;
+	--text-size-small: 10pt;
+	--text-size-large: 18pt;
+	--text-size-larger: 24pt;
+}
+
+body {
+	margin: 0;
+	color: var(--text);
+	background-color: white;
+	font-family: "Noto Sans", sans-serif;
+	font-size: var(--text-size);
+}
+
+#content {
+	margin: 0.75em;
