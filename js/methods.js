@@ -176,5 +176,6 @@ methods.loadProject = async function(id) {
 
 methods.promptForProject = function() {
 	let projID = prompt("Please enter a project ID. Only Scratch 3.0 projects work, and you can use unshared projects.")
+	if (projID === null) return;
 	this.loadProject(projID);
 }
