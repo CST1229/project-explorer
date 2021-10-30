@@ -8,7 +8,7 @@ Vue.component("navbar", {
 		<input type="number" class="header-item projid header-input" placeholder="Enter a project ID...">
 		-->
 		<span class="header-item about button"><img v-on:click="$parent.promptForProject" src="img/load.svg" alt="Load Project"></span>
-		<span class="header-item about button"><img onclick="alert('Project Explorer v1.0\\nA Scratch project.json viewer\\nBy CST1229\\n\\nCredits:\\nScratch, obiviously\\nTurboWarp, for providing a project API mirror that accepts cross-origin requests\\nA certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)\\nIconify, for the header icons\\nProbably others that I forgot\\n\\nThis site is not affiliated with Scratch, its Team or any other of its stuff.')" src="img/info.svg" alt="About"></span>
+		<span class="header-item about button"><img onclick="alert('Project Explorer v1.1\\nA Scratch project.json viewer\\nBy CST1229\\n\\nCredits:\\nScratch, obiviously\\nTurboWarp, for providing a project API mirror that accepts cross-origin requests\\nA certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)\\nIconify, for the header icons\\nProbably others that I forgot\\n\\nThis site is not affiliated with Scratch, its Team or any other of its stuff.')" src="img/info.svg" alt="About"></span>
 	</div>
 </div>`
 });
@@ -71,16 +71,22 @@ Vue.component("sprite-tab", {
 	>{{name}}</span>`
 });
 Vue.component("asset-view", {
-	props: ["url", "isSound"],
+	props: ["asset"],
 	template: `<div class="asset-viewer">
-	<div v-if="!isSound" class="image-viewer">
-		<img :src="url">
+	<div v-if="!asset.isSound" class="image-viewer">
+		<img :src="asset.url">
 	</div>
 	<div v-else class="sound-viewer">
 		<audio controls>
-			<source :src="url">
+			<source :src="asset.url">
 		</audio>
 	</div>
-	<a class="download-button" :href="url">Download</a>
+	<span class="asset-name">{{asset.name}}</span>
+	<div class="download-button">
+		<a :href="asset.url">Download</a>
+		<span v-if="!asset.isSound">
+			| <a target="_blank" :href="'https://gosoccerboy5.github.io/view-images/#' + asset.url">View (fullscreen)</a>
+		</span>
+	</div>
 </div>`
 });

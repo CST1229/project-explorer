@@ -62,8 +62,7 @@
 								</div>
 								<div class="asset-view" v-if="selectedAsset >= 0">
 									<asset-view
-									v-bind:url="project.sprites[selectedSprite].costumes[selectedAsset].url"
-									v-bind:is-sound="0"
+									v-bind:asset="project.sprites[selectedSprite].costumes[selectedAsset]"
 									></asset-view>
 								</div>
 							</div>
@@ -79,8 +78,7 @@
 								</div>
 								<div class="asset-view" v-if="selectedAsset >= 0">
 									<asset-view
-									v-bind:url="project.sprites[selectedSprite].sounds[selectedAsset].url"
-									v-bind:is-sound="1"
+									v-bind:asset="project.sprites[selectedSprite].sounds[selectedAsset]"
 									></asset-view>
 								</div>
 							</div>

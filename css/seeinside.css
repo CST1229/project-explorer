@@ -71,6 +71,9 @@ body.see-inside {
 }
 
 /* Info area */
+#info-area {
+	position: relative;
+}
 .padded-info {
 	padding: 1em;
 }
@@ -126,7 +129,7 @@ body.see-inside {
 	
 	flex-shrink: 0;
 	
-	overflow:hidden;
+	overflow: hidden;
 	
 	border-right: solid 4px var(--dark-gray);
 }
@@ -146,6 +149,12 @@ body.see-inside {
 
 .asset-view {
 	flex-shrink: 1;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.asset-viewer {
+	position: relative;
 	width: 100%;
 	height: 100%;
 }
@@ -168,6 +177,11 @@ body.see-inside {
 
 .asset-viewer .download-button {	
 	position: absolute;
+	left: 0.25em;
 	bottom: 0.25em;
-	margin-left: 0.25em;
+}
+.asset-viewer .asset-name {
+	position: absolute;
+	left: 0.25em;
+	top: 0.25em;
 }
