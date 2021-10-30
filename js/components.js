@@ -72,7 +72,7 @@ Vue.component("sprite-tab", {
 });
 Vue.component("asset-view", {
 	props: ["asset"],
-	template: `<div class="asset-viewer">
+	template: `<div class="asset-viewer" v-bind:key="asset.id">
 	<div v-if="!asset.isSound" class="image-viewer">
 		<img :src="asset.url">
 	</div>
