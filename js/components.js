@@ -8,7 +8,7 @@ Vue.component("navbar", {
 		<input type="number" class="header-item projid header-input" placeholder="Enter a project ID...">
 		-->
 		<span class="header-item about button"><img v-on:click="$parent.promptForProject" src="img/load.svg" alt="Load Project"></span>
-		<span class="header-item about button"><img onclick="alert('Project Explorer v1.1\\nA Scratch project.json viewer\\nBy CST1229\\n\\nCredits:\\nScratch, obiviously\\nTurboWarp, for providing a project API mirror that accepts cross-origin requests\\nA certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)\\nIconify, for the header icons\\nProbably others that I forgot\\n\\nThis site is not affiliated with Scratch, its Team or any other of its stuff.')" src="img/info.svg" alt="About"></span>
+		<span class="header-item about button"><img onclick="alert('Project Explorer v1.1.1\\nA Scratch project.json viewer\\nBy CST1229\\n\\nCredits:\\nScratch, obiviously\\nTurboWarp, for providing a project API mirror that accepts cross-origin requests\\nA certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)\\nIconify, for the header icons\\nProbably others that I forgot\\n\\nThis site is not affiliated with Scratch, its Team or any other of its stuff.')" src="img/info.svg" alt="About"></span>
 	</div>
 </div>`
 });
