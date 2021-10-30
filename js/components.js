@@ -12,14 +12,16 @@ Vue.component("navbar", {
 	</div>
 </div>`
 });
-Vue.component("asset-info", {
+Vue.component("asset-li", {
 	props: ["asset"],
-	template: `<li>
-	{{asset.name}} ({{asset.formatMsg}}) <a :href="asset.url">Download</a>
-	<span v-if="!asset.isSound">
-		| <a :href=" 'https://gosoccerboy5.github.io/view-images/#' + asset.url" target="_blank">View</a>
-	</span>
-</li>
+	template: `<span
+	class="asset-card"
+	v-bind:class="{'active': $parent.selectedAsset == asset.id}"
+	v-on:click="$parent.selectedAsset = asset.id">
+	<div class="asset-name">{{asset.name}}</div>
+	<div class="format-msg">({{asset.formatMsg}})</div>
+	<div class="id-msg">{{Number(asset.id)+1}}</div>
+</span>
 `
 });
 Vue.component("sprite-info", {
@@ -53,7 +55,7 @@ Vue.component("sprite-list", {
 	props: ["sprite"],
 	template: `<div
 	class="sprites-li"
-	v-on:click="$parent.selectedSprite = sprite.id"
+	v-on:click="$parent.selectedSprite = sprite.id; $parent.selectedAsset = -1"
 >
 	<span
 		v-bind:class="{'sprites-highlighted': $parent.selectedSprite == sprite.id}"
@@ -64,7 +66,21 @@ Vue.component("sprite-tab", {
 	props: ["name", "id"],
 	template: `<span
 	class="sprite-tab"
-	v-on:click="$parent.selectedTab = id"
+	v-on:click="$parent.selectedTab = id; $parent.selectedAsset = -1"
 	v-bind:class="{'sprites-highlighted': $parent.selectedTab == id}"
 	>{{name}}</span>`
+});
+Vue.component("asset-view", {
+	props: ["url", "isSound"],
+	template: `<div class="asset-viewer">
+	<div v-if="!isSound" class="image-viewer">
+		<img :src="url">
+	</div>
+	<div v-else class="sound-viewer">
+		<audio controls>
+			<source :src="url">
+		</audio>
+	</div>
+	<a class="download-button" :href="url">Download</a>
+</div>`
 });

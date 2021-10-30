@@ -39,29 +39,49 @@
 					</div>
 					<div class="project-grid" id="info-area">
 						<div v-if="selectedSprite>=0">
-							<div id="general-tab" v-if="selectedTab===0">
+							<div class="padded-info" id="general-tab" v-if="selectedTab===0">
 								<sprite-info
 									v-bind:sprite="project.sprites[selectedSprite]"
 								></sprite-info>	
 							</div>
-							<div id="code-tab" v-if="selectedTab===1" v-bind:sprite="project.sprites[selectedSprite]">
+							<div class="padded-info" id="code-tab" v-if="selectedTab===1" v-bind:sprite="project.sprites[selectedSprite]">
 								<code-info
 									v-bind:sprite="project.sprites[selectedSprite]"
 								></code-info>	
 							</div>
-							<div id="costumes-tab" v-if="selectedTab===2">
-								<ol><asset-info
-									v-for="asset in project.sprites[selectedSprite].costumes"
-									v-bind:key="asset.id"
-									v-bind:asset="asset"
-								></asset-info></ol>
+							<div id="costumes-tab" class="asset-tab" v-if="selectedTab===2">
+								<div class="asset-list">
+									<div class="asset-list-inner">
+										<asset-li
+											v-for="asset in project.sprites[selectedSprite].costumes"
+											v-bind:key="asset.id"
+											v-bind:asset="asset"
+										></asset-li>
+									</div>
+								</div>
+								<div class="asset-view" v-if="selectedAsset >= 0">
+									<asset-view
+									v-bind:url="project.sprites[selectedSprite].costumes[selectedAsset].url"
+									v-bind:is-sound="0"
+									></asset-view>
+								</div>
 							</div>
-							<div id="sound-tab" v-if="selectedTab===3">
-								<ol><asset-info
-									v-for="asset in project.sprites[selectedSprite].sounds"
-									v-bind:key="asset.id"
-									v-bind:asset="asset"
-								></asset-info></ol>
+							<div id="sound-tab" class="asset-tab" v-if="selectedTab===3">
+								<div class="asset-list">
+									<div class="asset-list-inner">
+										<asset-li
+											v-for="asset in project.sprites[selectedSprite].sounds"
+											v-bind:key="asset.id"
+											v-bind:asset="asset"
+										></asset-li>
+									</div>
+								</div>
+								<div class="asset-view" v-if="selectedAsset >= 0">
+									<asset-view
+									v-bind:url="project.sprites[selectedSprite].sounds[selectedAsset].url"
+									v-bind:is-sound="1"
+									></asset-view>
+								</div>
 							</div>
 						</div>
 						<div v-else>

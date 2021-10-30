@@ -7,7 +7,8 @@ var v = new Vue({
 		projTitle: "Project Explorer",
 		projectReady: 0,
 		projectMessage: "",
-		project: {}
+		project: {},
+		selectedAsset: -1
 	},
 	methods: {
 		loadProject: methods.loadProject,
