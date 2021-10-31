@@ -33,3 +33,8 @@ body {
 
 #content {
 	margin: 0.75em;
+}
+#start {
+	overflow: auto;
+	margin-top: -1.75em;
+}

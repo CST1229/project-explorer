@@ -1,3 +1,4 @@
+<!-- DOCTYPE html -->
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -11,7 +12,7 @@
 		<div id="app">
 			<navbar></navbar>
 			<div id="content">
-				<div id="project" v-if="projectReady">
+				<div id="project" v-if="projectReady >= 1">
 					<div class="project-grid">
 						<div id="tabs-area" v-if="selectedSprite >= 0">
 							<sprite-tab
@@ -102,6 +103,21 @@
 				<div id="projectmessage" v-if="projectReady == 0">
 					{{projectMessage}}
 				</div>
+				<div id="start" v-if="projectReady == -2">
+					<h1>Project Explorer v1.2</h1>
+					<h4>A Scratch project.json viewer</h4>
+					<br>
+					Enter a project ID in the header to load a project.<br>
+					<br>
+					Credits:<br>
+					Scratch, obiviously<br>
+					TurboWarp, for providing a project API mirror that accepts cross-origin requests<br>
+					A certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)<br>
+					Iconify, for the header icons<br>
+					Probably others that I forgot<br>
+					<br>
+					This site is not affiliated with Scratch, its Team or any other of its stuff.<br>
+				</div>
 			</div>
 		</div>
 		
@@ -109,18 +125,16 @@
 		<script src="js/components.js"></script>
 		<script src="js/general.js"></script>
 		<script>
-		//Load a project
-		setTimeout(function(){
-			v.promptForProject();
-		}, 0);
-		/*
+			v.showAboutScreen();
+		</script>
+		
+		<!--
 			Test projects:
 				10128407: Paper Minecraft
 				500000000: 500000000th Project of Scratch !
 				293945436: WBP WORKSPACE - DO NOT READ (High asset stress test)
 				534013689: Just Mineral Fish & Their Soundtracks
 				1: Project 1
-		*/
-		</script>
+		-->
 	</body>
 </html>

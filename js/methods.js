@@ -4,11 +4,13 @@ let methods = {};
 //Method to load a project
 methods.loadProject = async function(id) {
 	
+	this.projTitle = "Project";
+	
 	//In case we already have a project loaded
 	this.projectReady = false;
 	
 	//If the ID is not a number, it is instantly not a valid project
-	if (isNaN(id)) {
+	if (isNaN(id) || id === "") {
 		this.projectMessage = "Project ID is not a number. Make sure to use the project ID, not the URL.";
 		return;
 	}
@@ -178,4 +180,10 @@ methods.promptForProject = function() {
 	let projID = prompt("Please enter a project ID. Only Scratch 3.0 projects work, and you can use unshared projects.")
 	if (projID === null) return;
 	this.loadProject(projID);
+}
+
+methods.showAboutScreen = function() {
+	this.projectReady = -2; 
+	this.idInputVal = ""; 
+	this.projTitle = "About";
 }

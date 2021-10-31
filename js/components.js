@@ -4,11 +4,8 @@ Vue.component("navbar", {
 	<div id="header-content">
 		<span class="header-item logo">Project Explorer</span>
 		<span class="header-item projtitle header-input">{{$parent.projTitle}}</span>
-		<!--
-		<input type="number" class="header-item projid header-input" placeholder="Enter a project ID...">
-		-->
-		<span class="header-item about button"><img v-on:click="$parent.promptForProject" src="img/load.svg" alt="Load Project"></span>
-		<span class="header-item about button"><img onclick="alert('Project Explorer v1.1.1\\nA Scratch project.json viewer\\nBy CST1229\\n\\nCredits:\\nScratch, obiviously\\nTurboWarp, for providing a project API mirror that accepts cross-origin requests\\nA certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)\\nIconify, for the header icons\\nProbably others that I forgot\\n\\nThis site is not affiliated with Scratch, its Team or any other of its stuff.')" src="img/info.svg" alt="About"></span>
+		<input id="projIDInput" v-model="$parent.idInputVal" v-on:change="$parent.loadProject($parent.idInputVal)" class="header-item projid header-input" placeholder="Enter a project ID...">
+		<span class="header-item about button"><img src="img/info.svg" v-on:click="$parent.showAboutScreen" alt="About"></span>
 	</div>
 </div>`
 });

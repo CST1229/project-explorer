@@ -5,13 +5,11 @@ var v = new Vue({
 		selectedSprite: 0,
 		selectedTab: 0,
 		projTitle: "Project Explorer",
-		projectReady: 0,
+		projectReady: -2,
 		projectMessage: "",
 		project: {},
-		selectedAsset: -1
+		selectedAsset: -1,
+		idInputVal: ""
 	},
-	methods: {
-		loadProject: methods.loadProject,
-		promptForProject: methods.promptForProject
-	}
+	methods: methods
 });
