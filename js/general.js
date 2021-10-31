@@ -13,3 +13,5 @@ var v = new Vue({
 	},
 	methods: methods
 });
+
+v.idInputVal = "";
