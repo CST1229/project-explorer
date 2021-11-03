@@ -14,4 +14,16 @@ var v = new Vue({
 	methods: methods
 });
 
-v.idInputVal = "";
+const loadHash = (h) => {
+	let hashText = h.substring(1);
+	v.idInputVal = hashText;
+	v.loadProject(hashText);
+}
+
+if (location.hash) {
+	loadHash(location.hash);
+} else {
+	v.idInputVal = "";
+}
+
+window.addEventListener("hashchange", ()=>{loadHash(location.hash);}, false);

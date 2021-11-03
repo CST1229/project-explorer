@@ -60,7 +60,7 @@ body.see-inside {
 	white-space: nowrap;
 	overflow: hidden;
 	
-	border-right: solid 2px var(--light-gray);
+	border-right: var(--border-light-gray);
 	
 	display: flex;
 	justify-content: center;
@@ -131,7 +131,7 @@ body.see-inside {
 	
 	overflow: hidden;
 	
-	border-right: solid 4px var(--dark-gray);
+	border-right: var(--border-dark-gray);
 }
 .asset-list-inner {
 	height: 100%;

@@ -21,6 +21,9 @@
 	--text-size-smaller: 8pt;
 	--text-size-large: 18pt;
 	--text-size-larger: 24pt;
+	
+	--border-dark-gray: solid 4px var(--dark-gray);
+	--border-light-gray: solid 2px var(--light-gray);
 }
 
 body {
