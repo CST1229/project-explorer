@@ -2,12 +2,16 @@
 var v = new Vue({
 	el: "#app",
 	data: {
+		version: "1.3",
+		
 		selectedSprite: 0,
 		selectedTab: 0,
+		
 		projTitle: "Project Explorer",
 		projectReady: -2,
 		projectMessage: "",
 		project: {},
+		
 		selectedAsset: -1,
 		idInputVal: ""
 	},
