@@ -30,6 +30,16 @@
 	border-radius: 0.2em;
 	padding: 0.2em 0.5em;
 }
+.header-item.logo {
+	display: flex;
+	align-items: middle;
+}
+.header-item.logo img {
+	width: 3rem;
+	height: auto;
+	margin-right: 0.25em;
+	filter: drop-shadow(0 0 0.5rem var(--lighter-main));
+}
 .header-item.projtitle {
 	background-color: var(--dark-main);
 	width: 100%;

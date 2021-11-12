@@ -2,7 +2,10 @@
 Vue.component("navbar", {
 	template: `<div id="header">
 	<div id="header-content">
-		<span class="header-item logo">Project Explorer</span>
+		<span class="header-item logo">
+			<img src="img/icon.svg">
+			Project Explorer
+		</span>
 		<span class="header-item projtitle header-input">{{$parent.projTitle}}</span>
 		<input id="projIDInput" v-model="$parent.idInputVal" v-on:change="$parent.loadProject($parent.idInputVal)" class="header-item projid header-input" placeholder="Enter a project ID...">
 		<span class="header-item about button"><img src="img/info.svg" v-on:click="$parent.showAboutScreen" alt="About"></span>
