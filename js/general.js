@@ -2,7 +2,7 @@
 var v = new Vue({
 	el: "#app",
 	data: {
-		version: "1.3",
+		version: "1.3.1",
 		
 		selectedSprite: 0,
 		selectedTab: 0,
