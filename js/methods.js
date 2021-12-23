@@ -17,9 +17,8 @@ methods.loadProject = async function(id) {
 	
 	
 	function doProjectName() {
-		//Fetch project name from the API
-		//Thanks TurboWarp for the API. Hopefully it won't hurt their servers™
-		fetch(`https://trampoline.turbowarp.org/proxy/projects/${id}`)
+		//Fetch project name from ScratchDB
+		fetch(`https://scratchdb.lefty.one/v3/project/info/${id}`)
 			.then(async function(r) {
 				if (!r.ok) return; 
 				
@@ -46,7 +45,6 @@ methods.loadProject = async function(id) {
 		.then((text) => {t = text;});
 	if (!response.ok) {
 		this.projectMessage = "Project not found.";
-		return;
 	}
 	try {
 		JSON.parse(t);
