@@ -5,16 +5,17 @@ let methods = {};
 methods.loadProject = async function(id) {
 	
 	this.projTitle = "Project";
-	
+	var idnum;
 	//In case we already have a project loaded
 	this.projectReady = false;
 	
 	//If the ID is not a number, it is instantly not a valid project
-	if (isNaN(id) || id === "") {
+	if ((isNaN(id) && id.includes("scratch.mit.edu/projects/")) || id === "") {
 		this.projectMessage = "Project ID is not a number. Make sure to use the project ID, not the URL.";
 		return;
+	} else {
+		idnum = id.replace("https://", "").replace("http://", "").replace("scratch.mit.edu/projects/", "").replace("/", "")
 	}
-	
 	
 	function doProjectName() {
 		//Fetch project name from ScratchDB
