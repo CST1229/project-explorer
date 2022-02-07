@@ -83,7 +83,7 @@ Vue.component("asset-view", {
 	</div>
 	<span class="asset-name">{{asset.name}}</span>
 	<div class="download-button">
-		<a :href="asset.url">Download</a>
+		<a :href="asset.url" :download="asset.name">Download</a>
 		<span v-if="!asset.isSound">
 			| <a target="_blank" :href="'https://gosoccerboy5.github.io/view-images/#' + asset.url">View (fullscreen)</a>
 		</span>
