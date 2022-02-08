@@ -10,7 +10,7 @@ methods.loadProject = async function(id) {
 	this.projectReady = false;
 	
 	//If the ID is not a number, it is instantly not a valid project
-	if ((isNaN(id) && id.includes("scratch.mit.edu/projects/")) || id === "") {
+	if ((isNaN(id) && !(id.includes("scratch.mit.edu/projects/"))) || id === "") {
 		this.projectMessage = "Project ID is not a number. Make sure to use the project ID, not the URL.";
 		return;
 	} else {
