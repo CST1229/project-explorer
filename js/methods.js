@@ -6,6 +6,7 @@ methods.loadProject = async function(url) {
 	if (!this.allowProjectLoads) return;
 	
 	this.projTitle = "Project";
+	document.title = "Project - Project Explorer";
 	//In case we already have a project loaded
 	this.projectReady = false;
 		
@@ -51,6 +52,7 @@ methods.loadProject = async function(url) {
 				const J = JSON.parse(t);
 				
 				v.projTitle = J.title;
+				document.title = v.projTitle + " - Project Explorer";
 			})
 	}
 	
@@ -222,6 +224,7 @@ methods.showAboutScreen = function() {
 	this.projectReady = -2; 
 	this.idInputVal = ""; 
 	this.projTitle = "About";
+	document.title = "Project Explorer";
 }
 
 methods.init = function() {
