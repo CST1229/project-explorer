@@ -167,7 +167,7 @@ methods.loadProject = async function(url) {
 		this.project.blockCount += SPRITE.blockCount;
 		this.project.commentCount += SPRITE.commentCount;
 		
-		const ASSETS_URL = "https://assets.scratch.mit.edu/";
+		const ASSETS_URL = "https://assets.scratch.mit.edu/get_image/.%2E/";
 		
 		//Costumes
 		SPRITE.costumes = [];
