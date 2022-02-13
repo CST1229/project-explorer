@@ -1,21 +1,42 @@
 //Vue methods
 let methods = {};
 
-//Method to load a project
-methods.loadProject = async function(id) {
+methods.loadProject = async function(url) {
+	
+	if (!this.allowProjectLoads) return;
 	
 	this.projTitle = "Project";
-	var idnum;
 	//In case we already have a project loaded
 	this.projectReady = false;
-	
-	//If the ID is not a number, it is instantly not a valid project
-	if ((isNaN(id) && !(id.includes("scratch.mit.edu/projects/"))) || id === "") {
-		this.projectMessage = "Project ID is not a number. Make sure to use the project ID, not the URL.";
-		return;
-	} else {
-		idnum = id.replace("https://", "").replace("http://", "").replace("scratch.mit.edu/projects/", "").replace("/", "")
+		
+	//If the URL does not contain a number, it is instantly not a valid project
+	let id = url.match(/[-\d]+/);
+	if (id) {
+		id = id[0];
 	}
+	if (id < 1) {
+		console.log(id, "is less than 1")
+		if (id === null) {
+			console.log("id is null")
+			this.projectMessage = url + " does not seem to contain a number.";
+		} else {
+			if (id < 0) {
+				console.log(id, "is negative")
+				this.projectMessage = "...project IDs can't be negative?";
+			} else if (id * 1 === 0){
+				console.log("id is zero")
+				this.projectMessage = "Project IDs cannot be 0.";
+			} else {
+				//Just in case
+				console.log(id, "is invalid")
+				this.projectMessage = url + " does not seem to be a valid project URL or ID.";
+			}
+		}
+		return;
+	}
+	
+	console.log("check passed")
+	history.pushState(null, "", "#" + id);
 	
 	function doProjectName() {
 		//Fetch project name from ScratchDB
@@ -28,7 +49,6 @@ methods.loadProject = async function(id) {
 				try {JSON.parse(t);} catch(e) {return;}
 				
 				const J = JSON.parse(t);
-				if (J.code) {return;}
 				
 				v.projTitle = J.title;
 			})
@@ -45,12 +65,14 @@ methods.loadProject = async function(id) {
 		.then((resp) => {response = resp; return resp.text()})
 		.then((text) => {t = text;});
 	if (!response.ok) {
-		this.projectMessage = "Project not found.";
+		console.log("404")
+		this.projectMessage = `Project ID ${id} was not found.`;
 	}
 	try {
 		JSON.parse(t);
 	} catch(e) {
 		if (t.startsWith("ScratchV")) {
+			console.log("scratch 1.4")
 			this.projectMessage = "Scratch 1.x projects are not supported.";
 			doProjectName();
 		}
@@ -58,10 +80,12 @@ methods.loadProject = async function(id) {
 	}
 	const PROJECT = JSON.parse(t);
 	if (PROJECT.code) {
+		console.log("the error which is sent in json for some reason")
 		this.projectMessage = "Project not found.";
 		return;
 	}
 	if (PROJECT.objName) {
+		console.log("scratch 2.0")
 		this.projectMessage = "Scratch 2.0 projects are not supported yet.";
 		doProjectName();
 		return;
@@ -77,6 +101,9 @@ methods.loadProject = async function(id) {
 	
 	this.project.blockCount = 0;
 	this.project.commentCount = 0;
+	
+	//Why not
+	this.project.original = PROJECT;
 	
 	this.project.sprites = [];
 	//Add all sprites to our project
@@ -117,6 +144,18 @@ methods.loadProject = async function(id) {
 			
 			//Also broadcasts too
 			SPRITE.broadcasts = TARGET.broadcasts;
+		}
+		
+		//EASTER EGG
+		const msgComment = Object.values(SPRITE.comments).find((c)=>c.text.startsWith("PrExMsg\n"))
+		if (msgComment) {
+			SPRITE.msg = msgComment.text.substring(8);
+		}
+		if (TARGET.isStage) {
+			const gMsgComment = Object.values(SPRITE.comments).find((c)=>c.text.startsWith("PrExGeneralMsg\n"))
+			if (gMsgComment) {
+				this.project.generalMsg = gMsgComment.text.substring(15);
+			}
 		}
 		
 		//Store count
@@ -169,20 +208,35 @@ methods.loadProject = async function(id) {
 	} else {
 		this.selectedSprite = 0;
 	}
+	
 	this.projectMessage = "Done!";
 	this.projectReady = true;
 	this.projTitle = "Project";
+	console.log("ebic")
 	doProjectName();
 }
 
-methods.promptForProject = function() {
-	let projID = prompt("Please enter a project ID. Only Scratch 3.0 projects work, and you can use unshared projects.")
-	if (projID === null) return;
-	this.loadProject(projID);
-}
-
 methods.showAboutScreen = function() {
+	if (!this.isHomePage) return;
+	
 	this.projectReady = -2; 
 	this.idInputVal = ""; 
 	this.projTitle = "About";
+}
+
+methods.init = function() {
+	const loadHash = (h) => {
+		let hashText = h.substring(1);
+		this.idInputVal = hashText;
+		this.loadProject(hashText);
+	}
+	
+	window.addEventListener("hashchange", ()=>{loadHash(location.hash);}, false);
+	
+	if (window.location.hash) {
+		loadHash(window.location.hash);
+	} else {
+		this.idInputVal = "";
+		methods.showAboutScreen();
+	}
 }

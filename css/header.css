@@ -34,12 +34,18 @@
 	display: flex;
 	align-items: middle;
 }
-.header-item.logo img {
+.header-item.logo > img {
 	width: 3rem;
 	height: auto;
 	margin-right: 0.25em;
 	filter: drop-shadow(0 0 0.5rem var(--lighter-main));
 }
+@media screen and (max-width: 768px) {
+	.header-item.logo > .name {
+		display: none;
+	}
+}
+
 .header-item.projtitle {
 	background-color: var(--dark-main);
 	width: 100%;
@@ -48,7 +54,7 @@
 .header-item.projid {
 	background-color: var(--white);
 	color: var(--text);
-	width: 18em;
+	width: 25em;
 }
 .header-item.projid::placeholder {
 	color: var(--light-gray);

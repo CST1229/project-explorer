@@ -2,13 +2,12 @@
 Vue.component("navbar", {
 	template: `<div id="header">
 	<div id="header-content">
-		<span class="header-item logo">
+		<span class="header-item logo button" v-on:click="$parent.showAboutScreen" title="(click to see about page)">
 			<img src="img/icon.svg">
-			Project Explorer
+			<span class="name">Project Explorer</span>
 		</span>
-		<span class="header-item about button"><img src="img/info.svg" v-on:click="$parent.showAboutScreen" alt="About"></span>
 		<span class="header-item projtitle header-input">{{$parent.projTitle}}</span>
-		<input id="projIDInput" v-model="$parent.idInputVal" v-on:change="$parent.loadProject($parent.idInputVal)" class="header-item projid header-input" placeholder="Enter a project ID...">
+		<input v-if="$parent.allowProjectLoads" id="projIDInput" v-model="$parent.idInputVal" v-on:change="$parent.loadProject($parent.idInputVal)" class="header-item projid header-input" placeholder="Enter a project ID/URL...">
 	</div>
 </div>`
 });
@@ -27,6 +26,10 @@ Vue.component("asset-li", {
 Vue.component("sprite-info", {
 	props: ["sprite"],
 	template: `<div>
+	<h2>{{sprite.name}}</h2>
+	<div v-if="sprite.msg">
+		<span class="proj-msg">{{sprite.msg}}</span><br><br>
+	</div>
 	<div v-if="!sprite.isStage">
 		<b>Position:</b> {{sprite.x}}, {{sprite.y}}<br>
 		<b>Direction:</b> {{sprite.direction}}<br>
@@ -56,10 +59,9 @@ Vue.component("sprite-list", {
 	template: `<div
 	class="sprites-li"
 	v-on:click="$parent.selectedSprite = sprite.id; $parent.selectedAsset = -1"
+	v-bind:class="{'sprites-highlighted': $parent.selectedSprite == sprite.id}"
 >
-	<span
-		v-bind:class="{'sprites-highlighted': $parent.selectedSprite == sprite.id}"
-	>{{sprite.name}}</span>
+	<span>{{sprite.name}}</span>
 </div>`
 });
 Vue.component("sprite-tab", {

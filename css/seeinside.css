@@ -26,6 +26,7 @@ body.see-inside {
 /* Sprites area */
 .sprites-li {
 	height: 2em;
+	padding: 0 0.2em;
 	
 	text-align: center;
 	
@@ -39,7 +40,7 @@ body.see-inside {
 	
 	font-size: var(--text-size-large);
 }
-.sprites-li {
+.sprites-li > span {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -76,6 +77,7 @@ body.see-inside {
 }
 .padded-info {
 	padding: 1em;
+	padding-top: 0.5em;
 }
 .asset-tab {
 	display: flex;
@@ -184,4 +186,8 @@ body.see-inside {
 	position: absolute;
 	left: 0.25em;
 	top: 0.25em;
+}
+
+.proj-msg {
+	white-space: pre-wrap;
 }

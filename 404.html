@@ -4,18 +4,26 @@
 		<title>Project Explorer</title>
 		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 		<link href="css/general.css" rel="stylesheet">
-		<link rel="icon" type="image/x-icon" href="img/favicon.png">
+		<link rel="apple-touch-icon" sizes="512x512" type="image/png" href="img/icon.png">
+		<link rel="icon" sizes="512x512" type="image/png" href="img/icon.png">
+		<link rel="icon" sizes="16x16" type="image/png" href="img/favicon.png">
 	</head>
 	<body>
 		<div id="app">
 			<navbar></navbar>
 			<div id="content">
-				404 Not Found
+				This page was not found.<br>Go to the <a href="index.html">home page</a>.
 			</div>
 		</div>
 		
+		<script>
+			window.isHomePage = false;
+		</script>
 		<script src="js/methods.js"></script>
 		<script src="js/components.js"></script>
 		<script src="js/general.js"></script>
+		<script>
+			v.projTitle = "404";
+		</script>
 	</body>
 </html>

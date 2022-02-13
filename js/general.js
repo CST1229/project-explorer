@@ -1,33 +1,24 @@
 //Start
+window.isHomePage = window.isHomePage === undefined ? true : window.isHomePage
 var v = new Vue({
 	el: "#app",
 	data: {
-		version: "1.3.1.3",
+		version: "1.4",
 		
 		selectedSprite: 0,
 		selectedTab: 0,
 		
 		projTitle: "Project Explorer",
-		projectReady: -2,
 		projectMessage: "",
+		projectReady: -2,
+		isHomePage: window.isHomePage,
 		project: {},
 		
 		selectedAsset: -1,
-		idInputVal: ""
+		idInputVal: "",
+		
+		allowProjectLoads: window.isHomePage,
 	},
-	methods: methods
+	methods: methods,
+	mounted: methods.init,
 });
-
-const loadHash = (h) => {
-	let hashText = h.substring(1);
-	v.idInputVal = hashText;
-	v.loadProject(hashText);
-}
-
-if (location.hash) {
-	loadHash(location.hash);
-} else {
-	v.idInputVal = "";
-}
-
-window.addEventListener("hashchange", ()=>{loadHash(location.hash);}, false);

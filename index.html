@@ -5,7 +5,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 		<link href="css/general.css" rel="stylesheet">
 		<link href="css/seeinside.css" rel="stylesheet">
-		<link rel="icon" type="image/x-icon" href="img/favicon.png">
+		<link rel="icon" sizes="512x512" type="image/png" href="img/icon.png">
+		<link rel="icon" sizes="16x16" type="image/png" href="img/favicon.png">
 	</head>
 	<body class="see-inside">
 		<div id="app">
@@ -15,7 +16,7 @@
 					<div class="project-grid">
 						<div id="tabs-area" v-if="selectedSprite >= 0">
 							<sprite-tab
-								v-bind:name='"General"'
+								v-bind:name='"Info"'
 								v-bind:id="0"
 							></sprite-tab>
 							<sprite-tab
@@ -84,6 +85,12 @@
 							</div>
 						</div>
 						<div v-else class="padded-info">
+							<h2>General</h2>
+							
+							<div v-if="project.generalMsg">
+								<span class="proj-msg">{{project.generalMsg}}</span><br><br>
+							</div>
+							
 							<b>Total blocks: </b> {{project.blockCount}}<br>
 							<b>Total comments: </b> {{project.commentCount}}<br>
 							<b>Scratch version: </b> {{project.meta.scratchVer}}<br>
@@ -130,17 +137,5 @@
 		<script src="js/methods.js"></script>
 		<script src="js/components.js"></script>
 		<script src="js/general.js"></script>
-		<script>
-			v.showAboutScreen();
-		</script>
-		
-		<!--
-			Test projects:
-				10128407: Paper Minecraft
-				500000000: 500000000th Project of Scratch !
-				293945436: WBP WORKSPACE - DO NOT READ
-				534013689: Just Mineral Fish & Their Soundtracks
-				1: Project 1
-		-->
 	</body>
 </html>
