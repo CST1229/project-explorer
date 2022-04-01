@@ -1,10 +1,11 @@
-//Components
+// Components
 Vue.component("navbar", {
 	template: `<div id="header">
 	<div id="header-content">
 		<span class="header-item logo button" v-on:click="$parent.showAboutScreen" title="(click to see about page)">
-			<img src="img/icon.svg">
-			<span class="name">Project Explorer</span>
+			<img v-if="$parent.isPrEx" src="img/icon-prex.svg">
+			<img v-else src="img/icon.svg">
+			<span class="name">Project Explore<span v-if="!$parent.isPrEx">r</span><s v-else>r</s></span>
 		</span>
 		<span class="header-item projtitle header-input">{{$parent.projTitle}}</span>
 		<input v-if="$parent.allowProjectLoads" id="projIDInput" v-model="$parent.idInputVal" v-on:change="$parent.loadProject($parent.idInputVal)" class="header-item projid header-input" placeholder="Enter a project ID/URL...">

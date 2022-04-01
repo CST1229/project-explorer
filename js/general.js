@@ -1,6 +1,9 @@
-//Start
+// Start
+
+// Da funnis
+
 window.isHomePage = window.isHomePage === undefined ? true : window.isHomePage
-var v = new Vue({
+const v = new Vue({
 	el: "#app",
 	data: {
 		version: "1.4.1",
@@ -18,7 +21,15 @@ var v = new Vue({
 		idInputVal: "",
 		
 		allowProjectLoads: window.isHomePage,
+		
+		isPrEx: false,
 	},
 	methods: methods,
 	mounted: methods.init,
 });
+
+if (true || new URLSearchParams(location.search.substring(1)).has("afd")) {
+	document.documentElement.classList.add("prex");
+	v.isPrEx = true;
+	v.version = "9000.0.1";
+}

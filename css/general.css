@@ -26,6 +26,13 @@
 	--border-light-gray: solid 2px var(--light-gray);
 }
 
+:root.prex {
+	--main: #c61a2c;
+	--light-main: #d83e3a;
+	--lighter-main: #dd6355;
+	--dark-main: #aa1028;
+}
+
 body {
 	margin: 0;
 	color: var(--text);

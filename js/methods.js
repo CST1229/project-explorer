@@ -1,4 +1,4 @@
-//Vue methods
+// Vue methods
 let methods = {};
 
 methods.loadProject = async function(url) {
@@ -7,10 +7,10 @@ methods.loadProject = async function(url) {
 	
 	this.projTitle = "Project";
 	document.title = "Project - Project Explorer";
-	//In case we already have a project loaded
+	// In case we already have a project loaded
 	this.projectReady = false;
 		
-	//If the URL does not contain a number, it is instantly not a valid project
+	// If the URL does not contain a number, it is instantly not a valid project
 	let id = url.match(/[-\d]+/);
 	if (id) {
 		id = id[0];
@@ -28,7 +28,7 @@ methods.loadProject = async function(url) {
 				console.log("id is zero")
 				this.projectMessage = "Project IDs cannot be 0.";
 			} else {
-				//Just in case
+				// Just in case
 				console.log(id, "is invalid")
 				this.projectMessage = url + " does not seem to be a valid project URL or ID.";
 			}
@@ -40,7 +40,7 @@ methods.loadProject = async function(url) {
 	history.pushState(null, "", "#" + id);
 	
 	function doProjectName() {
-		//Fetch project name from ScratchDB
+		// Fetch project name from ScratchDB
 		fetch(`https://scratchdb.lefty.one/v3/project/info/${id}`)
 			.then(async function(r) {
 				if (!r.ok) return; 
@@ -56,11 +56,11 @@ methods.loadProject = async function(url) {
 			})
 	}
 	
-	//Init variables
+	// Init variables
 	let t = "";
 	let response = "";
 	
-	//Loading message
+	// Loading message
 	this.projectMessage = "Getting project...";
 	
 	await fetch(`https://projects.scratch.mit.edu/${id}`)
@@ -95,7 +95,7 @@ methods.loadProject = async function(url) {
 	
 	this.projectMessage = "Loading project...";
 	
-	//Ready up project metadata
+	// Ready up project metadata
 	this.project.meta = {};
 	this.project.meta.scratchVer = PROJECT.meta.semver;
 	this.project.meta.vmVer = PROJECT.meta.vm;
@@ -104,18 +104,18 @@ methods.loadProject = async function(url) {
 	this.project.blockCount = 0;
 	this.project.commentCount = 0;
 	
-	//Why not
+	// Why not
 	this.project.original = PROJECT;
 	
 	this.project.sprites = [];
-	//Add all sprites to our project
+	// Add all sprites to our project
 	for (const TARGETIDX in PROJECT.targets) {
 		const TARGET = PROJECT.targets[TARGETIDX];
 		const SPRITE = {};
 		SPRITE.name = TARGET.name;
 		SPRITE.id = TARGETIDX;
 		
-		//Common variables
+		// Common variables
 		SPRITE.isStage = TARGET.isStage;
 		if (!TARGET.isStage) {
 			SPRITE.visible = TARGET.visible;
@@ -130,25 +130,25 @@ methods.loadProject = async function(url) {
 		}
 		SPRITE.costume = TARGET.currentCostume;
 		
-		//Code
+		// Code
 		SPRITE.comments = TARGET.comments;
 		SPRITE.blocks = TARGET.blocks;
 		
-		//Misc variables
+		// Misc variables
 		SPRITE.volume = TARGET.volume;
 		SPRITE.layer = TARGET.layerOrder;
 		if (TARGET.isStage) {
 			SPRITE.tempo = TARGET.tempo;
 			
-			//Video
+			// Video
 			SPRITE.vTrans = TARGET.videoTransparency;
 			SPRITE.vState = TARGET.videoState;
 			
-			//Also broadcasts too
+			// Also broadcasts too
 			SPRITE.broadcasts = TARGET.broadcasts;
 		}
 		
-		//EASTER EGG
+		// EASTER EGG
 		const msgComment = Object.values(SPRITE.comments).find((c)=>c.text.startsWith("PrExMsg\n"))
 		if (msgComment) {
 			SPRITE.msg = msgComment.text.substring(8);
@@ -160,16 +160,16 @@ methods.loadProject = async function(url) {
 			}
 		}
 		
-		//Store count
+		// Store count
 		SPRITE.blockCount = Object.keys(SPRITE.blocks).length;
 		SPRITE.commentCount = Object.keys(SPRITE.comments).length;
-		//Add to the totals as well
+		// Add to the totals as well
 		this.project.blockCount += SPRITE.blockCount;
 		this.project.commentCount += SPRITE.commentCount;
 		
 		const ASSETS_URL = "https://assets.scratch.mit.edu/get_image/.%2E/";
 		
-		//Costumes
+		// Costumes
 		SPRITE.costumes = [];
 		for (const COSTIDX in TARGET.costumes) {
 			const COST = TARGET.costumes[COSTIDX];
@@ -184,7 +184,7 @@ methods.loadProject = async function(url) {
 			});
 		}
 		
-		//Sounds
+		// Sounds
 		SPRITE.sounds = [];
 		for (const SNDIDX in TARGET.sounds) {
 			const SND = TARGET.sounds[SNDIDX];
@@ -202,9 +202,9 @@ methods.loadProject = async function(url) {
 		this.project.sprites.push(SPRITE);
 	}
 	
-	//Finally, we are done, now we can show
+	// Finally, we are done, now we can show
 	
-	//Mimic Scratch behavior: If there is at least 1 non-stage sprite, show that by default
+	// Mimic Scratch behavior: If there is at least 1 non-stage sprite, show that by default
 	if (this.project.sprites.length > 0) {
 		this.selectedSprite = 1;
 	} else {
