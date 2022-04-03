@@ -28,7 +28,7 @@ const v = new Vue({
 	mounted: methods.init,
 });
 
-if (true || new URLSearchParams(location.search.substring(1)).has("afd")) {
+if (new URLSearchParams(location.search.substring(1)).has("afd")) {
 	document.documentElement.classList.add("prex");
 	v.isPrEx = true;
 	v.version = "9000.0.2";
