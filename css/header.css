@@ -63,3 +63,11 @@
 .header-item.button {
 	cursor: pointer;
 }
+
+#upload-input {
+	display: none;
+}
+.upload-image {
+	width: 2.5rem;
+	height: auto;
+}

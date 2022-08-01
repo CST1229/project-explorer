@@ -5,7 +5,11 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 		<link href="css/general.css" rel="stylesheet">
 		<link href="css/seeinside.css" rel="stylesheet">
-		<link rel="icon" sizes="512x512" type="image/png" href="img/icon.png">
+		<link
+			rel="apple-touch-icon"
+			sizes="512x512"
+			href="img/icon.png"
+		/>
 		<link rel="icon" sizes="16x16" type="image/png" href="img/favicon.png">
 	</head>
 	<body class="see-inside">
@@ -106,10 +110,10 @@
 						></sprite-list>
 					</div>
 				</div>
-				<div id="projectmessage" v-if="projectReady == 0">
+				<div id="projectmessage" v-if="projectReady === 0">
 					{{projectMessage}}
 				</div>
-				<div id="start" v-if="projectReady == -2">
+				<div id="start" v-if="projectReady === -2">
 					<h1>Project Explore<span v-if="!isPrEx">r</span><s v-else>r</s> v{{ version }}</h1>
 					<h4>A Scratch project.json viewer</h4>
 					<br>
@@ -118,12 +122,13 @@
 					<h5>Credits</h5>
 					<ul>
 					<li>Scratch, obviously</li>
-					<li>ScratchDB, for the project info API</li>
+					<li>TurboWarp, for the project info API</li>
 					<li v-if="isPrEx">Totally definitely not one of the Oxford University Press' books</li>
-					<li v-else>A certain social media made by Jeffalo, for color scheme inspiration (more like stealing /s)</li>
 					<li><a href="https://Scratch.mit.edu/users/LandonHarter">@LandonHarter</a>, for inspiring the logo <a href="https://scratch.mit.edu/discuss/post/5742934/">(post)</a></li>
-					<li>Probably others that I forgot</li>
+					<li>Iconify, for the upload icon</li>
+					<li>JSZip</li>
 					<li><a href="https://github.com/CST1229/project-explorer/graphs/contributors">All of the contributors</a></li>
+					<li>Probably others that I forgot</li>
 					</ul>
 					
 					<br>
@@ -135,8 +140,6 @@
 			</div>
 		</div>
 		
-		<script src="js/methods.js"></script>
-		<script src="js/components.js"></script>
-		<script src="js/general.js"></script>
+		<script type="module" src="js/general.js"></script>
 	</body>
 </html>
