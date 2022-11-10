@@ -73,7 +73,7 @@ methods.loadURL = async function(url) {
 	} catch(e) {}
 
 	let response = await fetch(`https://projects.scratch.mit.edu/${id}?${
-		new URLSearchParams({project_token: token}).toString()
+		new URLSearchParams({token}).toString()
 	}`);
 	let t = await response.text();
 
