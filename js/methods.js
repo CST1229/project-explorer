@@ -61,16 +61,19 @@ methods.loadURL = async function(url) {
 	this.projectMessage = "Getting project...";
 
 	// Project token stuff is happening soon, so fetch it
-	let projTitle, token;
+	let projTitle, token, originalToken;
 	try {
 		const apiResp = await fetch(`https://trampoline.turbowarp.org/proxy/projects/${id}`);
 
 		if (apiResp.ok) {
 			const apiJson = await apiResp.json();
 			projTitle = apiJson.title;
-			token = apiJson.project_token;
+			originalToken = apiJson.project_token;
 		}
 	} catch(e) {}
+
+	// Allow specify token through a URL parameter
+	token = new URLSearchParams(location.search.substring(1)).get("project_token") || originalToken;
 
 	let response = await fetch(`https://projects.scratch.mit.edu/${id}?${
 		new URLSearchParams({token}).toString()
@@ -83,12 +86,17 @@ methods.loadURL = async function(url) {
 	}
 
 	if (!response.ok) {
-		// Try again without the token, just in case
-		response = await fetch(`https://projects.scratch.mit.edu/${id}`);
+		// Try again with the original token, just in case
+		response = await fetch(`https://projects.scratch.mit.edu/${id}?${
+			new URLSearchParams({originalToken}).toString()
+		}`);
 		t = await response.text();
 
 		if (!response.ok) {
 			this.projectMessage = `Project ID ${id} was either not found or is unshared.`;
+			if (token !== originalToken) {
+				this.projectMessage = ` The project token you specified might have expired.`;
+			}
 			return;
 		}
 	}
