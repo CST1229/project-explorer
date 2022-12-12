@@ -73,7 +73,7 @@ methods.loadURL = async function(url) {
 
 	// Allow specify token through a URL parameter
 	token = new URLSearchParams(location.search.substring(1)).get("token")
-		|| new URLSearchParams(location.hash.substring(1)).get("token")
+		|| new URLSearchParams(location.hash.substring(location.hash.indexOf("?"))).get("token")
 		|| new URLSearchParams(location.hash).get("token")
 		|| originalToken;
 
