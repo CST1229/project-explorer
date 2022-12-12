@@ -97,7 +97,7 @@ methods.loadURL = async function(url) {
 		if (!response.ok) {
 			this.projectMessage = `Project ID ${id} was either not found or is unshared.`;
 			if (token !== originalToken) {
-				this.projectMessage = ` The project token you specified might have expired.`;
+				this.projectMessage += ` The project token you specified might have expired.`;
 			}
 			return;
 		}
