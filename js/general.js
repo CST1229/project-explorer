@@ -7,7 +7,7 @@ window.isHomePage = window.isHomePage === undefined ? true : window.isHomePage
 window.v = new Vue({
 	el: "#app",
 	data: {
-		version: "1.5.2",
+		version: "1.5.3",
 		
 		selectedSprite: 0,
 		selectedTab: 0,

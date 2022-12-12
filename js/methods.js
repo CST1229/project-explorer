@@ -60,7 +60,6 @@ methods.loadURL = async function(url) {
 	// Loading message
 	this.projectMessage = "Getting project...";
 
-	// Project token stuff is happening soon, so fetch it
 	let projTitle, token, originalToken;
 	try {
 		const apiResp = await fetch(`https://trampoline.turbowarp.org/proxy/projects/${id}`);
@@ -73,7 +72,10 @@ methods.loadURL = async function(url) {
 	} catch(e) {}
 
 	// Allow specify token through a URL parameter
-	token = new URLSearchParams(location.search.substring(1)).get("project_token") || originalToken;
+	token = new URLSearchParams(location.search.substring(1)).get("token")
+		|| new URLSearchParams(location.hash.substring(1)).get("token")
+		|| new URLSearchParams(location.hash).get("token")
+		|| originalToken;
 
 	let response = await fetch(`https://projects.scratch.mit.edu/${id}?${
 		new URLSearchParams({token}).toString()
