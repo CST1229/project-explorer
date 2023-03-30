@@ -100,9 +100,9 @@ body.see-inside {
 	
 	cursor: pointer;
 }
-:root.prex .asset-card:not(.active) {
+:root.prex .asset-card {
 	/* we still gotta care about accessibility even for april fools jokes */
-	color: var(--main);
+	color: var(--text);
 }
 
 .asset-card.active {

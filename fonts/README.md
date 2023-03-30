@@ -1,0 +1,1 @@
+These font files are for the Project Explore (April Fools) mode; the normal font is Noto Sans, which is pulled from Google Fonts and not locally.

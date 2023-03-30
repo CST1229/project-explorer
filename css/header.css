@@ -6,14 +6,27 @@
 	color: white;
 	font-size: var(--text-size-larger);
 	white-space: nowrap;
-	overflow: hidden;
+	overflow: visible;
 	box-shadow: 0 0.1em 0.3em var(--dark-gray);
+}
+:root.prex #header {
+	background: linear-gradient(
+		to bottom,
+		var(--white) 13%,
+		var(--light-main) 13% 70%,
+		var(--main) 30%
+	);
+	box-shadow: none;
+	box-shadow: 0 0 0.15em var(--black);
 }
 #header-content {
 	display: flex;
 	align-items: center;
 	padding-left: 0.5em;
 	height: 100%;
+}
+:root.prex #header-content {
+	padding-left: 0;
 }
 
 .header-item {
@@ -32,13 +45,26 @@
 }
 .header-item.logo {
 	display: flex;
-	align-items: middle;
+	align-items: center;
 }
 .header-item.logo > img {
 	width: 3rem;
 	height: auto;
 	margin-right: 0.25em;
+	filter: drop-shadow(0 0 0.075em var(--black));
+}
+:root:not(.prex) .header-item.logo > img {
 	filter: drop-shadow(0 0 0.5rem var(--lighter-main));
+}
+:root.prex .header-item.logo {
+	height: 100%;
+	position: relative;
+}
+:root.prex .header-item.logo > img {
+	height: 100%;
+	transform: scale(1.6);
+	transform-origin: 0% 33%;
+	margin-right: 1.25em;
 }
 @media screen and (max-width: 768px) {
 	.header-item.logo > .name {
@@ -70,4 +96,13 @@
 .upload-image {
 	width: 2.5rem;
 	height: auto;
+}
+
+:root.prex .name,
+:root.prex .upload-image,
+:root.prex .header-input {
+	filter: drop-shadow(0 -2px var(--main))
+		drop-shadow(0 2px var(--main))
+		drop-shadow(2px 0 var(--main))
+		drop-shadow(-2px 0 var(--main));
 }

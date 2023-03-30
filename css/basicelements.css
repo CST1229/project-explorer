@@ -11,6 +11,18 @@ h1 {
 h2, h3, h4, h5 {
 	margin: 0.2em 0 0.1em 0;
 }
+
+:root.prex h1,
+:root.prex h2,
+:root.prex h3,
+:root.prex h4,
+:root.prex h5,
+:root.prex #header-content .name,
+:root.prex .projtitle {
+	font-family: "Highlander", "Noto Sans", sans-serif;
+	font-weight: bold;
+}
+
 a {
 	color: var(--main);
 	text-decoration: none;
@@ -24,6 +36,10 @@ a:active {
 }
 input {
 	border: none;
+	font-family: inherit;
+}
+button {
+	font-family: inherit;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

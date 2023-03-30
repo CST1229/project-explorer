@@ -3,11 +3,13 @@
 import methods from "./methods.js";
 import "./components.js";
 
+const isAFD = (new Date().getMonth() === 3) && (new Date().getDate() === 1);
+
 window.isHomePage = window.isHomePage === undefined ? true : window.isHomePage
 window.v = new Vue({
 	el: "#app",
 	data: {
-		version: "1.5.3",
+		version: "1.5.4",
 		
 		selectedSprite: 0,
 		selectedTab: 0,
@@ -32,7 +34,7 @@ window.v = new Vue({
 		allowProjectLoads: window.isHomePage,
 		
 		// April Fools: Project Explore mode
-		isPrEx: false,
+		isPrEx: isAFD,
 	},
 	methods,
 	mounted: methods.init,
@@ -42,5 +44,8 @@ window.v = new Vue({
 if (new URLSearchParams(location.search.substring(1)).has("afd")) {
 	document.documentElement.classList.add("prex");
 	v.isPrEx = true;
-	v.version = "9000.0.2";
+}
+
+if (v.isPrEx) {
+	v.version = "9000.1.0";
 }

@@ -2,6 +2,44 @@
 @import "header.css";
 /* Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+/* Project Explore mode */
+@font-face {
+	font-family: "Stone Sans";
+	src: url("../fonts/StoneSansProITC-Medium.otf");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Stone Sans";
+	src: url("../fonts/Stone Sans ITC TT Bold.ttf");
+	font-display: swap;
+	font-weight: bold;
+}
+@font-face {
+	font-family: "Stone Sans";
+	src: url("../fonts/StoneSansProITC-BoldItalic.otf");
+	font-display: swap;
+	font-weight: bold;
+	font-style: italic;
+}
+@font-face {
+	font-family: "Stone Sans";
+	src: url("../fonts/StoneSansProITC-MediumItalic.otf");
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: "Highlander";
+	src: url("../fonts/HighlanderStd-Book.otf");
+	font-display: swap;
+}
+@font-face {
+	font-family: "Highlander";
+	src: url("../fonts/highlanderstd-bold.otf");
+	font-display: swap;
+	font-weight: bold;
+	size-adjust: 125%;
+}
+
 
 /* General variables */
 :root {
@@ -27,10 +65,11 @@
 }
 
 :root.prex {
-	--main: #c61a2c;
-	--light-main: #ff9f7c;
-	--lighter-main: #ffceb1;
-	--dark-main: #aa1028;
+	--text: #2c2e35;
+	--main: #449c3c;
+	--light-main: #bbd85e;
+	--lighter-main: #ddfa7f;
+	--dark-main: #227a1a;
 }
 
 body {
@@ -39,6 +78,10 @@ body {
 	background-color: white;
 	font-family: "Noto Sans", sans-serif;
 	font-size: var(--text-size);
+}
+
+:root.prex body {
+	font-family: "Stone Sans", "Noto Sans", sans-serif;
 }
 
 #content {
